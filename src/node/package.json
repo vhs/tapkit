@@ -1,0 +1,25 @@
+{
+  "name": "vhs-tapkit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vhs/tapkit.git"
+  },
+  "keywords": [
+    "nfc"
+  ],
+  "author": "Thomas LaFreniere",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vhs/tapkit/issues"
+  },
+  "homepage": "https://github.com/vhs/tapkit#readme",
+  "dependencies": {
+    "node-nfc-nci": "^1.0.5"
+  }
+}
