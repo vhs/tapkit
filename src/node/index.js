@@ -18,7 +18,7 @@ nci.listen(context => {
       });
       
       resp.on("end", () => {
-        console.log(JSON.parse(data).explaination);
+        console.log(JSON.parse(data));
       });
     }).on("error", err => console.error(err.message));
   });
