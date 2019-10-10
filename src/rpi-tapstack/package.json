@@ -1,0 +1,15 @@
+{
+  "name": "rpi-tapstack",
+  "version": "1.0.0",
+  "description": "Raspberry Pi + Relay shield + NFC shield + docker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-nfc-nci": "^1.0.5"
+  }
+}
