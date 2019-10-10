@@ -20,6 +20,6 @@
   },
   "homepage": "https://github.com/vhs/tapkit#readme",
   "dependencies": {
-    "node-nfc-nci": "^1.0.5"
+    "node-nfc-nci": "^1.0.6"
   }
 }
