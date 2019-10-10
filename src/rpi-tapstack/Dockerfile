@@ -1,7 +1,9 @@
 FROM raspbian/stretch
 
+RUN apt install -y curl git cmake automake autoconf libtool pkg-config nodejs
+
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
-RUN apt install -y cmake automake autoconf libtool pkg-config nodejs
+RUN apt-get install -y nodejs
 
 RUN mkdir -p /usr/local/src
 
