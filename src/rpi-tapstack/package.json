@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "node-nfc-nci": "^1.0.5"
+    "node-nfc-nci": "^1.0.6"
   }
 }
