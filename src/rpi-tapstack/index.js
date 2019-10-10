@@ -1,6 +1,6 @@
 const nci = require("node-nfc-nci");
 const https = require("https");
-const Gpio = require("onoff");
+const Gpio = require("onoff").Gpio;
 
 const NOMOS_BASE_URI = process.env.NOMOS_BASE_URI || "https://membership.vanhack.ca/services/web";
 const NOMOS_API_KEY = process.env.NOMOS_API_KEY || "";
