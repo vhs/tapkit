@@ -25,4 +25,4 @@ ADD . .
 
 RUN npm install
 
-CMD node start
+CMD npm start

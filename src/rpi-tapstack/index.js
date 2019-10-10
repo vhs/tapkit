@@ -44,6 +44,7 @@ function checkRfid(id) {
       .on("error", e => {
         reject(e);
       });
+  });
 }
 
 function signal(gpio, on = true, timeout) {
