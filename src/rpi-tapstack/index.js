@@ -63,7 +63,7 @@ function checkRfid(id) {
 }
 
 function hasPrivileges(privileges = [], codes = []) {
-  return codes.every(code => authorization.privileges.some(priv => priv.code === code));
+  return codes.every(code => privileges.some(priv => priv.code === code));
 }
 
 function signal(pin, on = true, timeout) {
