@@ -11,6 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "node-nfc-nci": "^1.0.6",
-    "onoff": "^5.0.0"
+    "rpio": "^1.2.3"
   }
 }

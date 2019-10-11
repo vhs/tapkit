@@ -1,6 +1,6 @@
 const nci = require("node-nfc-nci");
 const https = require("https");
-const Gpio = require("onoff").Gpio;
+const rpio = require("rpio");
 
 const NOMOS_BASE_URI = process.env.NOMOS_BASE_URI || "https://membership.vanhack.ca/services/web";
 const NOMOS_API_KEY = process.env.NOMOS_API_KEY || "";
@@ -22,15 +22,14 @@ const RELAY_CH1_PIN = process.env.RELAY_CH1_PIN || 37;
 const RELAY_CH2_PIN = process.env.RELAY_CH2_PIN || 38;
 const RELAY_CH3_PIN = process.env.RELAY_CH3_PIN || 40;
 
-if (!Gpio.accessible) {
-  throw new Error("GPIO is not accessible");
-  return process.exit(1);
-}
+rpio.open(RELAY_CH1_PIN, rpio.OUTPUT, rpio.LOW);
+rpio.open(RELAY_CH2_PIN, rpio.OUTPUT, rpio.LOW);
+rpio.open(RELAY_CH3_PIN, rpio.OUTPUT, rpio.LOW);
 
 const relay = {
-  ch1: new Gpio(RELAY_CH1_PIN, "low", { activeLow: true }),
-  ch2: new Gpio(RELAY_CH2_PIN, "low", { activeLow: true }),
-  ch3: new Gpio(RELAY_CH3_PIN, "low", { activeLow: true })
+  ch1: { write: (state) => rpio.write(RELAY_CH1_PIN, state) },
+  ch2: { write: (state) => rpio.write(RELAY_CH2_PIN, state) },
+  ch3: { write: (state) => rpio.write(RELAY_CH3_PIN, state) }
 };
 
 function checkRfid(id) {
@@ -67,13 +66,13 @@ function hasPrivileges(privileges = [], codes = []) {
   return codes.every(code => authorization.privileges.some(priv => priv.code === code));
 }
 
-function signal(gpio, on = true, timeout) {
+function signal(pin, on = true, timeout) {
   return new Promise(resolve => {
-    gpio.writeSync(on ? 1 : 0);
+    pin.write(on ? rpio.HIGH : rpio.LOW);
   
     if (timeout) {
       setTimeout(() => { 
-        gpio.writeSync(on ? 0 : 1);
+        pin.write(on ? rpio.LOW : rpio.HIGH);
         resolve();
       }, timeout);
     } else {
