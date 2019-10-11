@@ -100,7 +100,9 @@ nci.listen(context => {
     
     console.log(`tag authorization: ${JSON.stringify(authorization)}`);
     
-    const hasAccess = hasPrivileges(authorization.privileges, requiredPrivileges);
+    const privileges = authorization.privileges || [];
+    
+    const hasAccess = hasPrivileges(privileges, requiredPrivileges);
     
     console.log(`tag hasAccess: ${hasAccess}`);
     
