@@ -8,6 +8,8 @@ nci.listen(context => {
   context.on("error", msg => console.error(msg));
   
   context.on("arrived", tag => {
+    console.log(`tag: ${JSON.stringify(tag)}`);
+    
     https.get(`${NOMOS_BASE_URI}/AuthService1.svc/CheckRfid?rfid=${tag.uid.id}`, {
       headers: { "X-Api-Key": NOMOS_API_KEY }
     }, (resp) => {
@@ -18,7 +20,11 @@ nci.listen(context => {
       });
       
       resp.on("end", () => {
-        console.log(JSON.parse(data));
+        if (resp.statusCode === 200) {
+          console.log(JSON.parse(data));
+        } else {
+          console.log(`status: ${resp.statusCode} data: ${data}`);
+        }
       });
     }).on("error", err => console.error(err.message));
   });
